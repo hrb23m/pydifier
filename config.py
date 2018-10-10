@@ -31,7 +31,7 @@ class Config:
       input_file_basename = os.path.basename(self.input_file_path)
       input_file_name, input_file_extention = os.path.splitext(input_file_basename)
 
-      output_file_basename = input_file_name + "_" + self.getSuffix() + "." + input_file_extention
+      output_file_basename = input_file_name + "_" + self.getSuffix() + input_file_extention
 
       self.output_file_path = os.path.join(input_file_dirpath, output_file_basename)
 

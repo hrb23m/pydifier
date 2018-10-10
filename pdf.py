@@ -1,8 +1,10 @@
-import sys
+import sys, copy
 from PyPDF2 import PdfFileWriter, PdfFileReader
 
 class Pdf:
   def __init__(self):
+    self.input_stream = None
+    self.output_stream = None
     self.pages = []
 
   def getPages(self):
@@ -15,15 +17,22 @@ class Pdf:
     self.pages = pages
 
   def load(self, path):
-    f = open(path, 'rb')
-    reader = PdfFileReader(f)
+    self.input_stream = open(path, 'rb')
+    reader = PdfFileReader(self.input_stream)
     for i in range(reader.getNumPages()):
-      pages[i] = reader.getPage(i)
-    f.close()
+      page = copy.copy(reader.getPage(i))
+      self.pages.append(page)
 
   def save(self, path):
-    f = open(path, 'wb')
-    writer = PdfFileWriter(f)
-    for i in range(pages):
-      writer.addPage(pages[i])
-    f.close()
+    writer = PdfFileWriter()
+    for page in self.pages:
+      writer.addPage(page)
+
+    self.output_stream = open(path, 'wb')
+    writer.write(self.output_stream)
+
+  def close(self):
+    if (self.input_stream != None):
+      self.input_stream.close()
+    if (self.output_stream != None):
+      self.output_stream.close()

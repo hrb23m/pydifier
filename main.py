@@ -43,17 +43,13 @@ def main():
 
     sys.exit(0)
   except Exception as e:
-    error_type = type(e).__name__
-    stack_trace = traceback.format_exc()
-
     if args.verbose:
       print("{:=^30}".format(" Stack Trace"))
-      print(stack_trace.strip())
+      traceback.print_exc()
     else:
       t, v, tb = sys.exc_info()
-      traceback.print_exc()
+      print("%s\n", v)
       sys.exit(1)
-
 
 if __name__ == "__main__":
   main()

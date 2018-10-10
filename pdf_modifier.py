@@ -12,11 +12,14 @@ class PdfModifier:
   def execute(self):
     pdf = Pdf()
 
-    pdf.load(self.config.getInputFilePath())
-    for effector in self.effectorChain:
-      pdf = effector.apply(pdf)
+    try:
+      pdf.load(self.config.getInputFilePath())
+      for effector in self.effectorChain:
+        pdf = effector.apply(pdf)
 
-    pdf.save(self.config.getOutputFilePath())
+      pdf.save(self.config.getOutputFilePath())
+    finally:
+      pdf.close()
 
 
   def __buildEffectorChain(self):
@@ -42,4 +45,3 @@ class PdfModifier:
     # reverse
     if self.config.doReverse():
       self.effectorChain.append(Reverser())
-
