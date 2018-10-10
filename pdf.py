@@ -10,11 +10,14 @@ class Pdf:
   def getPages(self):
     return self.pages
 
+  def setPages(self, pages):
+    self.pages = pages
+
   def getPage(self, i):
     return self.pages[i]
 
-  def setPages(self, pages):
-    self.pages = pages
+  def setPage(self, i, page):
+    self.pages[i] = page
 
   def load(self, path):
     self.input_stream = open(path, 'rb')

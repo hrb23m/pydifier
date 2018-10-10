@@ -5,5 +5,5 @@ class Rotater(PageEffector):
     self.degree = degree
   
   def applyPerPage(self, page):
-    page.rotateClockwise(degree)
+    page.rotateClockwise(self.degree)
     return page

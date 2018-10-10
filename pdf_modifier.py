@@ -34,7 +34,7 @@ class PdfModifier:
 
     # rotate
     if 0 < self.config.getRotateDegree():
-      self.effectorChain.append(Rotater())
+      self.effectorChain.append(Rotater(self.config.getRotateDegree()))
 
     # saddle stitch
     if self.config.isSaddleStitch():
