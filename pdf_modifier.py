@@ -38,7 +38,7 @@ class PdfModifier:
 
     # saddle stitch
     if self.config.isSaddleStitch():
-      effector = SaddleStitchEffector()
+      effector = SaddleStitchSorter()
       effector.setFrontPageLocation(self.config.getFrontPageLocation())
       self.effectorChain.append(effector)
 

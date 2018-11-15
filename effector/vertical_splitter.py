@@ -4,13 +4,13 @@ from effector import Effector
 
 class VerticalSplitter(Effector):
   def apply(self, pdf):
-    numPages = len(pdf.getPages())
+    num_pages = len(pdf.getPages())
 
-    pages = [0] * (numPages*2)
-    for i in range(numPages):
+    pages = [0] * (num_pages*2)
+    for i in range(num_pages):
       p1 = copy.copy(pdf.getPage(i))
-      p2 = copy,copy(pdf.getPage(i))
-      (w, h) = p.mediaBox.upperRight
+      p2 = copy.copy(pdf.getPage(i))
+      (w, h) = p1.mediaBox.upperRight
 
       p1.mediaBox.upperLeft  = (0,   h)
       p1.mediaBox.upperRight = (w/2, h)

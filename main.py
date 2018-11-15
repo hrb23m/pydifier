@@ -21,10 +21,11 @@ def build_config(args):
     config.setRotateDegree(args.rotate)
 
   if args.saddle_stitch:
+    config.setSaddleStitch()
     if args.front_first:
-      config.setSaddleStitch(Config.FRONT_FIRST)
+      config.setFrontPageLocation(Config.FRONT_FIRST)
     if args.front_second:
-      config.setSaddleStitch(Config.FRONT_SECOND)
+      config.setFrontPageLocation(Config.FRONT_SECOND)
 
   if args.reverse:
     config.setReverse()
